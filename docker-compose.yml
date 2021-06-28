@@ -23,8 +23,10 @@ services:
       - web
   
   # API Service
-  api:
-    build: ./src/api
+  api:    
+    build:
+      context: ./src/api
+      target: api
     working_dir: /var/www/api
     volumes:
       - ./src/api:/var/www/api
@@ -33,6 +35,8 @@ services:
     depends_on:
       mysql:
         condition: service_healthy
+      redis:
+        condition: service_started
 
   # Web Service
   web:
@@ -44,6 +48,15 @@ services:
     depends_on:
       - api
   
+  # Redis Service
+  redis:
+    image: redis:6.2.4-alpine
+    command: ["redis-server", "--appendonly", "yes"]
+    ports:
+      - 6379:6379
+    volumes:
+      - redisdata:/data
+
   # MySQL Service
   mysql:
     image: mysql:8.0.25
@@ -70,8 +83,20 @@ services:
     depends_on:
       mysql:
         condition: service_healthy
+  
+  # Worker Service
+  worker:
+    build:
+      context: ./src/api
+      target: worker
+    working_dir: /var/www/api
+    volumes:
+      - ./src/api:/var/www/api
+    depends_on:
+      - api
 
 # Volumes
 volumes:
   mysqldata:
   phpmyadmindata:
+  redisdata:

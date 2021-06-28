@@ -7,6 +7,7 @@ Services:
 - Laravel 8.48.1 (as API)
 - Nuxt 2.15.3 (as Frontend)
 - Phpmyadmin 5.1.1
+- Redis 6.2.4
 
 ## Installation
 
