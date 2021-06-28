@@ -11,3 +11,6 @@ COPY .docker/php.ini $PHP_INI_DIR/conf.d/opcache.ini
 
 # Use the default development configuration
 RUN mv $PHP_INI_DIR/php.ini-development $PHP_INI_DIR/php.ini
+
+# Install Bash
+RUN apk --no-cache add bash

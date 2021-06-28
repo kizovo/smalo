@@ -22,6 +22,7 @@ services:
     working_dir: /var/www/api
     volumes:
       - ./src/api:/var/www/api
+      - ./.docker/api/init:/opt/files/init
     depends_on:
       mysql:
         condition: service_healthy
