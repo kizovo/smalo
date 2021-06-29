@@ -76,3 +76,14 @@ The Laravel framework is open-sourced software licensed under the [MIT license](
 2. $ php artisan sentry:publish --dsn=https://6c1865c30ce242b7aeaf36eb2f2b12df@o557927.ingest.sentry.io/5838839
 3. .env config: SENTRY_LARAVEL_DSN=https://6c1865c30ce242b7aeaf36eb2f2b12df@o557927.ingest.sentry.io/5838839
 ```
+
+- [laravel/telescope](https://laravel.com/docs/8.x/telescope)
+```
+1. $ composer require laravel/telescope --dev
+2. $ php artisan telescope:install
+3. $ php artisan migrate
+```
+
+- [spatie/laravel-responsecache](https://github.com/spatie/laravel-responsecache)
+1. $ composer require spatie/laravel-responsecache
+2. $ php artisan vendor:publish --provider="Spatie\ResponseCache\ResponseCacheServiceProvider"

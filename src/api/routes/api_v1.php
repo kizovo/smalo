@@ -28,12 +28,12 @@ Route::group(['namespace' => 'Api\V1'], function(){
     });
 
     // User Should Authenticated
-    Route::get('profile', [UserController::class, 'profile'])->middleware(['auth:api']);
+    Route::get('profile', [UserController::class, 'profile'])->middleware(['auth:api', 'cacheResponse:300']);
     Route::post('test-mail', [TestController::class, 'sendMail'])->middleware(['auth:api-admin']);
     Route::get('test-setting', [TestController::class, 'settings'])->middleware(['auth:api-admin', 'cacheResponse:300']);
     // Admin Should Authenticated
     Route::get('dashboard', [TestController::class, 'dashboard'])->middleware(['auth:api-admin', 'cacheResponse:300']);
 
     // No Authenticated
-    Route::get('/', [InitController::class, 'index']);
+    Route::get('/', [InitController::class, 'index'])->middleware('cacheResponse:300');
 });
