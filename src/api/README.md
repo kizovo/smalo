@@ -87,3 +87,7 @@ The Laravel framework is open-sourced software licensed under the [MIT license](
 - [spatie/laravel-responsecache](https://github.com/spatie/laravel-responsecache)
 1. $ composer require spatie/laravel-responsecache
 2. $ php artisan vendor:publish --provider="Spatie\ResponseCache\ResponseCacheServiceProvider"
+
+- [imanghafoori1/laravel-microscope](https://github.com/imanghafoori1/laravel-microscope)
+1. $ composer require imanghafoori/laravel-microscope --dev
+2. $ php artisan vendor:publish
