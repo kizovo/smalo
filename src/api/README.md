@@ -62,10 +62,17 @@ If you discover a security vulnerability within Laravel, please send an e-mail t
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
 
 ## Additional Plugins
-- [GeneaLabs/laravel-model-caching](https://github.com/GeneaLabs/laravel-model-caching)
+- [geneaLabs/laravel-model-caching](https://github.com/GeneaLabs/laravel-model-caching)
 ```
 1. $ composer require genealabs/laravel-model-caching
 2. php artisan modelCache:publish --config
 3. .env config: MODEL_CACHE_ENABLED=true
 4. to clear the cache: $ php artisan modelCache:clear
+```
+
+- [sentry/sentry-laravel](https://docs.sentry.io/platforms/php/guides/laravel/)
+```
+1. $ composer require sentry/sentry-laravel
+2. $ php artisan sentry:publish --dsn=https://6c1865c30ce242b7aeaf36eb2f2b12df@o557927.ingest.sentry.io/5838839
+3. .env config: SENTRY_LARAVEL_DSN=https://6c1865c30ce242b7aeaf36eb2f2b12df@o557927.ingest.sentry.io/5838839
 ```
