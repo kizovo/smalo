@@ -16,11 +16,13 @@ services:
       - ./src/api:/var/www/api
       - ./.docker/nginx/conf.d:/etc/nginx/conf.d
       - ./.docker/nginx/certs:/etc/nginx/certs
-      - phpmyadmindata:/var/www/phpmyadmin
-    depends_on:      
-      - phpmyadmin
+      - adminerdata:/var/www/adminer
+      # - phpmyadmindata:/var/www/phpmyadmin      
+    depends_on:            
+      - adminer
       - api
       - web
+      # - phpmyadmin
   
   # API Service
   api:    
@@ -74,16 +76,28 @@ services:
       retries: 10
   
   # PhpMyAdmin Service
-  phpmyadmin:
-    image: phpmyadmin/phpmyadmin:5.1.1-fpm-alpine
+  # phpmyadmin:
+  #   image: phpmyadmin/phpmyadmin:5.1.1-fpm-alpine
+  #   environment:
+  #     PMA_HOST: mysql
+  #   volumes:
+  #     - phpmyadmindata:/var/www/html
+  #   depends_on:
+  #     mysql:
+  #       condition: service_healthy
+  
+  # Adminer Service
+  adminer:
+    image: adminer:4.8.1-fastcgi
     environment:
-      PMA_HOST: mysql
+      ADMINER_DEFAULT_SERVER: mysql
+      ADMINER_DESIGN: dracula
     volumes:
-      - phpmyadmindata:/var/www/html
+      - adminerdata:/var/www/html
     depends_on:
       mysql:
         condition: service_healthy
-  
+
   # Worker Service
   worker:
     build:
@@ -107,5 +121,6 @@ services:
 # Volumes
 volumes:
   mysqldata:
-  phpmyadmindata:
+  # phpmyadmindata:
+  adminerdata:
   redisdata:

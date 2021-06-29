@@ -1,5 +1,7 @@
 FROM php:8.0.7-fpm-alpine as api
 
+LABEL maintainer="Rheza Sindhuwinata <rheza.s@gmail.com>"
+
 # Import extension installer
 COPY --from=mlocati/php-extension-installer /usr/bin/install-php-extensions /usr/bin/
 

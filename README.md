@@ -6,7 +6,7 @@ Services:
 - mySQL 8.0.25
 - Laravel 8.48.1 (as API)
 - Nuxt 2.15.3 (as Frontend)
-- Phpmyadmin 5.1.1
+- Phpmyadmin 5.1.1 / Adminer 4.8.1
 - Redis 6.2.4
 
 ## Installation
@@ -17,6 +17,7 @@ Install [docker desktop](https://www.docker.com/products/docker-desktop) first
 1. Clone project
 2. Rename .env.example to .env
 3. $ docker-compose up -d --build
+4. Clean up docker space: $ docker system prune --all --volumes --force
 
 Prepare Laravel Installation as API:
 1. $ docker-compose run --rm api composer create-project --prefer-dist laravel/laravel tmp "8.*"
@@ -87,3 +88,5 @@ Available commands:
     + [https://www.php-fig.org/psr/psr-4/](https://www.php-fig.org/psr/psr-4/)
 
 3. Use ESLint & Prettier
+
+4. Resource about this architecture (https://tech.osteel.me/posts/docker-for-local-web-development-introduction-why-should-you-care)[https://tech.osteel.me/posts/docker-for-local-web-development-introduction-why-should-you-care]

@@ -60,3 +60,12 @@ If you discover a security vulnerability within Laravel, please send an e-mail t
 ## License
 
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+
+## Additional Plugins
+- [GeneaLabs/laravel-model-caching](https://github.com/GeneaLabs/laravel-model-caching)
+```
+1. $ composer require genealabs/laravel-model-caching
+2. php artisan modelCache:publish --config
+3. .env config: MODEL_CACHE_ENABLED=true
+4. to clear the cache: $ php artisan modelCache:clear
+```

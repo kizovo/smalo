@@ -1,5 +1,7 @@
 FROM node:16.3-alpine
 
+LABEL maintainer="Rheza Sindhuwinata <rheza.s@gmail.com>"
+
 ENV APP_ROOT /src
 
 RUN mkdir ${APP_ROOT}
