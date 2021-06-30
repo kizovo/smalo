@@ -61,7 +61,41 @@ If you discover a security vulnerability within Laravel, please send an e-mail t
 
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
 
+## Laravel Build Process Re-run:
+
+1. $ composer install --no-interaction
+2. $ php artisan clear-compiled
+3. $ composer dumpautoload -o
+4. $ php artisan optimize:clear
+5. $ php artisan optimize
+5. $ php artisan modelCache:clear
+6. $ php artisan responsecache:clear
+7. $ php artisan self-diagnosis
+8. $ php artisan migrate
+
+## Laravel Extras
+1. Check Laravel Code by laravel-microscope:
+🔹 php artisan check:events
+🔹 php artisan check:gates
+🔹 php artisan check:views
+🔹 php artisan check:routes
+🔹 php artisan check:psr4 {-s|--nofix}
+🔹 php artisan check:imports {-s|--nofix}
+🔹 php artisan check:stringy_classes
+🔹 php artisan check:dd
+🔹 php artisan check:early_returns
+🔹 php artisan check:compact
+🔹 php artisan check:blade_queries
+🔹 php artisan check:action_comments
+🔹 php artisan check:bad_practices
+🔹 php artisan check:extract_blades
+🔹 php artisan pp:route
+🔹 php artisan check:generate
+🔹 php artisan check:endif
+🔹 php artisan check:all
+
 ## Additional Plugins
+
 - [geneaLabs/laravel-model-caching](https://github.com/GeneaLabs/laravel-model-caching)
 ```
 1. $ composer require genealabs/laravel-model-caching
@@ -91,3 +125,12 @@ The Laravel framework is open-sourced software licensed under the [MIT license](
 - [imanghafoori1/laravel-microscope](https://github.com/imanghafoori1/laravel-microscope)
 1. $ composer require imanghafoori/laravel-microscope --dev
 2. $ php artisan vendor:publish
+
+- [beyondcode/laravel-query-detector](https://github.com/beyondcode/laravel-query-detector)
+1. $ composer require beyondcode/laravel-query-detector --dev
+2. $ php artisan vendor:publish --provider="BeyondCode\QueryDetector\QueryDetectorServiceProvider"
+
+- [beyondcode/laravel-self-diagnosis](https://github.com/beyondcode/laravel-self-diagnosis)
+1. $ composer require beyondcode/laravel-self-diagnosis
+2. $ php artisan vendor:publish --provider=BeyondCode\\SelfDiagnosis\\SelfDiagnosisServiceProvider
+3. to check: $ php artisan self-diagnosis
