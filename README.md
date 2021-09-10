@@ -11,38 +11,77 @@ Services:
 
 ## Installation
 
-Install [docker desktop](https://www.docker.com/products/docker-desktop) first
+**<ins>A. New & Clean Environment: (Recommended OS: Linux, OSX, Windows(WSL))</ins>**
 
 ```
-1. Clone project
-2. Rename .env.example to .env
-3. $ docker-compose up -d --build
-4. Clean up docker space: $ docker system prune --all --volumes --force
+1. Install [docker desktop](https://www.docker.com/products/docker-desktop)
+2. Clone project
+3. Go to project folder: $ cd smalo
+3. Rename .env.example to .env
 
-Prepare Laravel Installation as API:
+4. Resolve project CLI:
+    a. Add following function at .bashrc or .zshrc, i.e .zshrc
+       function smalo {
+          cd /PATH/TO/YOUR/PROJECT && bash smalo $*
+          cd -
+       }
+       *note: change /PATH/TO/YOUR/PROJECT, use 'pwd' in project root folder 
+    b. Apply changes: $ source .zshrc
+
+5. Init project by run: $ smalo init 
+
+6. Add to hosts file:
+   a. Linux: $ sudo vi /etc/hosts
+   b. Windows: $ cd c:\windows\system32\drivers\etc\hosts
+   below line:
+   127.0.0.1       api.smalo.test web.smalo.test adminer.smalo.test
+
+7. Open browser:
+   https://api.smalo.test/
+   https://web.smalo.test/
+   https://adminer.smalo.test/
+
+*note: 
+1. if error storage/logs access denied run under api folder: $ chmod 777 -R storage bootstrap/cache
+2. if found error: "...An attempt was made to access a socket in a way forbidden by its access permissions...", Pls follow this step 
+   (Known bug with Hyper-V windows WSL):
+    a. First, check, if your required port is reserved:
+    $ netsh interface ipv4 show excludedportrange protocol=tcp
+
+    b. If it your port is in one of the ranges, stop winnat:
+    $ $net stop winnat
+
+    c. Prohibit dynamic reservation for your required port (here for example, 50051, as stated in the original question):
+    $ netsh int ipv4 add excludedportrange protocol=tcp startport=50051 numberofports=1
+
+    d. Restart winnat:
+    $ net start winnat
+
+*usage:
+1. Enter API shell: $ docker-compose exec api sh
+2. Enter Web shell: $ docker-compose exec web sh
+```
+
+**<ins>B. First Project Creation Only:</ins>**
+
+Prepare API (Laravel):
+```
 1. $ docker-compose run --rm api composer create-project --prefer-dist laravel/laravel tmp "8.*"
 2. $ docker-compose run --rm api sh -c "mv -n tmp/.* ./ && mv tmp/* ./ && rm -Rf tmp"
-
-Prepare Nuxt Installation as Web:
+```
+Prepare Web (Nuxt):
+```
 1. $ docker-compose run --rm web sh -c "yarn global add nuxt && yarn create nuxt-app tmp"
 2. $ docker-compose run --rm web sh -c "mv -n tmp/.* ./ && mv tmp/* ./ && rm -Rf tmp"
 ```
-
-## Usage
+Useful Docker Commands:
+```
+1. Build up docker space: $ docker-compose up -d --build
+2. Clean up docker space: $ docker system prune --all --volumes --force
+3. Cleanup containers: $ docker-compose down -v --rmi all --remove-orphans
+```
 
 ```
-1. Enter API shell: $ docker-compose exec api sh
-2. Enter Web shell: $ docker-compose exec web sh
-3. Cleanup containers: $ docker-compose down -v --rmi all --remove-orphans
-
-Before use below command, add following function at .bashrc or .zshrc
-1. $ sudo vi ~/.zshrc
-2. function smalo {
-    cd /PATH/TO/YOUR/PROJECT && bash smalo $*
-      cd -
-  }
-  *note: change /PATH/TO/YOUR/PROJECT, use 'pwd' in project root folder
-
 Project spesific usage:
 -----------------------
 

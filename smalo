@@ -74,6 +74,32 @@ init () {
     start && cert_install
 }
 
+init_api () {
+    env \
+        && down -v \
+        && build \
+        && docker-compose run --rm --entrypoint="//opt/files/init" api \        
+    
+    if [ ! -f .docker/nginx/certs/smalo.test.crt ]; then
+        cert_generate
+    fi
+
+    start && cert_install
+}
+
+init_web () {
+    env \
+        && down -v \
+        && build \
+        && yarn install \
+    
+    if [ ! -f .docker/nginx/certs/smalo.test.crt ]; then
+        cert_generate
+    fi
+
+    start && cert_install
+}
+
 # Display and tail the logs of all containers or the specified one's
 logs () {
     docker-compose logs -f "${@:1}"
@@ -168,6 +194,12 @@ EOF
     init)
         init
         ;;
+    init_api)
+        init_api
+        ;;
+    init_web)
+        init_web
+        ;;
     logs)
         logs "${@:2}"
         ;;
@@ -209,6 +241,8 @@ Available commands:
         Options:
         -v .................... Destroy the volumes as well
     init ...................................... Initialise the Docker environment and the application
+        init_api .............................. Initialise api only
+        init_web .............................. Initialise web only
     logs [container] .......................... Display and tail the logs of all containers or the specified one's
     repositories............................... Pull from repositories
     restart ................................... Restart the containers
