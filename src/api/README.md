@@ -72,7 +72,7 @@ The Laravel framework is open-sourced software licensed under the [MIT license](
 6. $ php artisan responsecache:clear
 7. $ php artisan self-diagnosis
 8. $ php artisan migrate
-*note: #2-#6 can be shorten by calling: $ php artisan smalo:build
+*note: #2-#6 can be shorten by calling: $ php artisan smalo:freshen
 
 ## Laravel Extras
 1. Check Laravel Code by laravel-microscope:

@@ -49,7 +49,7 @@ Services:
     $ netsh interface ipv4 show excludedportrange protocol=tcp
 
     b. If it your port is in one of the ranges, stop winnat:
-    $ $net stop winnat
+    $ net stop winnat
 
     c. Prohibit dynamic reservation for your required port (here for example, 50051, as stated in the original question):
     $ netsh int ipv4 add excludedportrange protocol=tcp startport=50051 numberofports=1

@@ -4,21 +4,21 @@ namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
 
-class Build extends Command
+class Freshen extends Command
 {
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'smalo:build';
+    protected $signature = 'smalo:freshen';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Smalo Build Process Re-run';
+    protected $description = 'Freshen Smalo API Build Process Re-run';
 
     /**
      * Create a new command instance.
@@ -43,5 +43,6 @@ class Build extends Command
         $this->call('optimize');
         $this->call('modelCache:clear');
         $this->call('responsecache:clear');
+        $this->call('config:cache');
     }
 }
