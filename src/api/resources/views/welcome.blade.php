@@ -3,11 +3,13 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-
+        <meta name="description" content="Laravel Web Application Skeleton Framework">
+        <meta name="theme-color" content="#4285F4">
+        <link rel="apple-touch-icon" href="{{ asset('images/apple-icon.png') }}">
         <title>Laravel</title>
 
         <!-- Fonts -->
-        <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+        <!-- <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet"> -->
 
         <!-- Styles -->
         <style>
@@ -16,7 +18,7 @@
 
         <style>
             body {
-                font-family: 'Nunito', sans-serif;
+                font-family: Arial, sans-serif;
             }
         </style>
     </head>
